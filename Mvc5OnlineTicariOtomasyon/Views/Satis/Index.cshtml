@@ -1,0 +1,71 @@
+﻿@using Mvc5OnlineTicariOtomasyon.Models.Siniflar
+@model List<SatisHareket>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 style="margin-top:20px">SATIŞLAR</h2>
+
+<table id="tbl1" class="table table-hover" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Satış ID</th>
+            <th>Cari</th>
+            <th>Personel</th>
+            <th>Ürün</th>
+            <th>Adet</th>
+            <th>Fiyat</th>
+            <th>Toplam Tutar</th>
+            <th>Tarih</th>
+            <th>Güncelle</th>
+            <th>Detaylar</th>
+        </tr>
+    </thead>
+    @foreach (var m in Model)
+    {
+        <tr>
+
+            <td>@m.Satisid</td>
+            <td>@m.Cariler.CariAd @m.Cariler.CariSoyad</td>
+            <td>@m.Personel.PersonelAd @m.Personel.PersonelSoyad</td>
+            <td>@m.Urun.Urunad</td>
+            <td>@m.Adet</td>
+            <td>@m.Fiyat</td>
+            <td>@m.ToplamTutar</td>
+            <td>@m.Tarih.ToShortDateString()</td>
+            <td>
+                <a href="/Satis/SatisGetir/@m.Satisid" class="btn btn-warning"><i class="fa fa-undo"></i> GÜNCELLE</a>
+            </td>
+            <td>    <a href="/Satis/SatisDetay/@m.Satisid" class="btn btn-info"><i class="fa fa-info-circle"></i> Detay</a></td>
+
+        </tr>
+}
+
+</table>
+<br />
+<br />
+<a href="/Satis/SatisEkle" class="btn btn-primary"><i class="fa fa-plus"></i>Yeni Satış Yap</a>
+<a href="/Satis/SatisListesi" class="btn btn-info"><i class="fa fa-print"></i> Yazdır</a>
+
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+    <script>$('#tbl1').dataTable({});</script>
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<script>
+    $('#tbl1').dataTable({});
+</script>*@

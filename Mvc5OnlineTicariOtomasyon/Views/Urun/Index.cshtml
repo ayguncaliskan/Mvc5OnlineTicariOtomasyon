@@ -1,0 +1,67 @@
+﻿@using Mvc5OnlineTicariOtomasyon.Models.Siniflar
+@model List<Urun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@using (Html.BeginForm("Index", "Urun", FormMethod.Get))
+{
+<p>
+    Ürün Adı : @Html.TextBox("p")
+    <input type="submit" value="Ara" />
+</p>}
+<table id="tbl1" class="table table-bordered">
+
+    <tr>
+        @*<th>Ürün ID</th>*@
+        <th>Adı</th>
+        <th>Marka</th>
+        <th>Stok</th>
+        <th>Alış Fiyat</th>
+        <th>Satış Fiyat</th>
+        @*<th>Durum</th>*@
+        <th>Kategori</th>
+        @*<th>Görsel</th>*@
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Satış Yap</th>
+    </tr>
+
+    @foreach (var m in Model)
+    {
+        <tr>
+
+            @*<td>@m.Urunid</td>*@
+            <td>@m.Urunad</td>
+            <td>@m.Marka</td>
+            <td>@m.Stok</td>
+            <td>@m.AlisFiyat ₺</td>
+            <td>@m.SatisFiyat ₺</td>
+            @*<td>@m.Durum</td>*@
+            <td>@m.Kategori.KategoriAd</td>
+            @*<td  ><img src=" @m.UrunGorsel" style="width:100px;"/></td>*@
+            <td>
+                <a href="/Urun/UrunSil/@m.Urunid" class="btn btn-danger"><i class="fa fa-trash"></i> Sil</a>
+            </td>
+            <td> <a href="/Urun/UrunGetir/@m.Urunid" class="btn btn-warning"><i class="fa fa-undo"></i> Güncelle</a></td>
+            <td> <a href="/Urun/SatisYap/@m.Urunid" class="btn btn-dark"><i class="fa fa-print"></i> Satış Yap</a></td>
+
+        </tr>
+
+    }
+</table>
+<br />
+<br />
+
+<a href="/Urun/UrunEkle" class="btn btn-primary"><i class="fa fa-plus"></i> Yeni Ürün Ekle</a>
+<a href="/Urun/UrunListesi" class="btn btn-info"><i class="fa fa-print"></i> Yazdır</a>
+
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+<script>
+    $('#tbl1').dataTable({});
+</script>

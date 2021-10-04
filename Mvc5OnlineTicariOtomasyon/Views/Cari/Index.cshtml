@@ -1,0 +1,42 @@
+﻿@using Mvc5OnlineTicariOtomasyon.Models.Siniflar
+@model List<Cariler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Cari ID</th>
+        <th>Adı</th>
+        <th>Soyadı</th>
+        <th>Şehir</th>
+        <th>E-posta</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var m in Model)
+    {
+<tr>
+
+    <td>@m.Cariid</td>
+    <td>@m.CariAd</td>
+    <td>@m.CariSoyad</td>
+    <td>@m.CariSehir</td>
+    <td>@m.CariMail</td>
+    <td>
+        <a href="/Cari/CariSil/@m.Cariid" class="btn btn-danger"><i class="fa fa-trash"></i> Sil</a>
+    </td>
+    <td> <a href="/Cari/CariGetir/@m.Cariid" class="btn btn-warning"><i class="fa fa-undo"></i> Güncelle</a></td>
+    <td> <a href="/Cari/SatisGecmisi/@m.Cariid" class="btn btn-info"><i class="fa fa-history"></i> Satış Geçmişi</a></td>
+</tr>
+}
+</table>
+<br />
+<br />
+
+<a href="/Cari/CariEkle" class="btn btn-primary"><i class="fa fa-plus"></i> Cari Ekle</a>
+<a href="/Cari/CariListesi" class="btn btn-info"><i class="fa fa-print"></i> Yazdır</a>
+

@@ -1,0 +1,29 @@
+﻿@model Mvc5OnlineTicariOtomasyon.Models.Siniflar.Personel
+
+@{
+    ViewBag.Title = "PersonelEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>PERSONEL EKLEME SAYFASI</h2>
+<br />
+@using (Html.BeginForm("PersonelEkle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form class="form-group" action="/Personel/PersonelEkle" method="post">
+        @Html.Label("Ad:")
+        @Html.TextBoxFor(x => x.PersonelAd, new { @class = "form-control" })
+        <br />
+        @Html.Label("Soyad:")
+        @Html.TextBoxFor(x => x.PersonelSoyad, new { @class = "form-control" })
+        <br />
+        @Html.Label("Görsel:")
+        @*@Html.TextBoxFor(x => x.PersonelGörsel, new { @class = "form-control" })*@
+        <input type="file" name="PersonelGörsel" />
+        <br />
+        @Html.Label("Departman:")
+        @Html.DropDownListFor(x => x.Departmanid, (List<SelectListItem>)ViewBag.dprtmn, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-info"><i class="fa fa-plus"></i> Ekle</button>
+    </form>
+}

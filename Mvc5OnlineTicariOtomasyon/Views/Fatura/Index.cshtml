@@ -1,0 +1,96 @@
+﻿@using Mvc5OnlineTicariOtomasyon.Models.Siniflar
+@model List<Faturalar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 style="margin-top:20px">FATURALAR</h2>
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            @*<th>Fatura ID</th>*@
+            <th>Seri Sıra No</th>
+            <th>Tarih</th>
+            <th>Saat</th>
+            @*<th>Vergi Dairesi</th>*@
+            @*<th>Teslim Alan</th>
+            <th>Teslim Eden</th>*@
+            <th>Toplam</th>
+            <th>Güncelleme</th>
+            <th>Detaylar</th>
+            <th>Yeni Kalem</th>
+
+            @*<th>İşlemler</th>*@
+        </tr>
+    </thead>
+    @foreach (var m in Model)
+    {
+<tr>
+
+    @*<td>@m.Faturaid</td>*@
+    <td>@m.FaturaSerino @m.FaturaSırano</td>
+
+    <td>@m.Tarih</td>
+    <td>@m.Saat</td>
+    @*<td>@m.VergiDairesi</td>*@
+    @*<td>@m.TeslimAlan</td>
+    <td>@m.TeslimEden</td>*@
+    <td>@m.Toplam ₺</td>
+    <td>
+        <a href="/Fatura/FaturaGetir/@m.Faturaid" class="btn btn-warning">Güncelle</a>
+    </td>
+    <td>
+        <a href="/Fatura/FaturaDetay/@m.Faturaid" class="btn btn-info">Detaylar</a>
+    </td>
+    <td>
+        <a href="/Fatura/FaturaDetay/@m.Faturaid" class="btn btn-dark">Kalem</a>
+    </td>
+
+</tr>}
+</table>
+<br />
+<br />
+
+<a href="/Fatura/FaturaEkle" class="btn btn-primary"><i class="fa fa-plus"></i> Yeni Fatura Ekle</a>
+<a href="/Fatura/FaturaListesi" class="btn btn-info"><i class="fa fa-print"></i> Yazdır</a>
+<br /> <br />
+<button type="button" class="btn btn-dark" data-toggle="modal"data-target="#Modal1">Popup Penceresi</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Popup Diyalog Ekranı</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Seri no</td>
+                        <td>Sıra no</td>
+                        <td>Tutar</td>
+                    </tr>
+                    @foreach (var x in Model)
+                    {
+
+
+                    <tr>
+                        <td>@x.FaturaSerino</td>
+                        <td>@x.FaturaSırano</td>
+                        <td>@x.Toplam</td>
+                    </tr>
+                    }
+                </table>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Tamam</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+<script>$('#tbl1').dataTable({});</script>
+
+
